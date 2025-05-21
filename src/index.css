@@ -1,5 +1,46 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Neuton&display=swap');
 
 :root{
-  background-color: #404040;
+  background-color: #0a0a0af4;
+}
+
+.font-aldrich {
+  font-family: 'Aldrich', sans-serif;
+}
+
+.font-neuton {
+  font-family: 'Neuton', serif;
+}
+
+/* Flicker Animation */
+.flicker-glow {
+  animation: flicker 4s infinite;
+  text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
+  5%   { opacity: 0.8; text-shadow: none; }
+  10%  { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 15px #ca1a1a; }
+  20%  { opacity: 0.6; text-shadow: none; }
+  30%  { opacity: 1; text-shadow: 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
+  70%  { opacity: 0.9; text-shadow: 0 0 5px #ca1a1a; }
+  90%  { opacity: 0.7; text-shadow: none; }
+  100% { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
+}
+
+/* Soft glow */
+.text-glow {
+  animation: glowPulse 2s infinite alternate;
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  }
 }
