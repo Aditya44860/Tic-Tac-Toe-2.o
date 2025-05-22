@@ -34,7 +34,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/superman.png"
+    src="./images/superman.png"
     alt="superman"
     variants={jumping(0.2)}
     initial="initial"
