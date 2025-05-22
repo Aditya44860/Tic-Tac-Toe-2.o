@@ -46,6 +46,6 @@
 }
 
 .red-glow-hover:hover {
-  box-shadow: 0 0 20px rgba(255, 68, 68, 0.574);
-  transition: text-shadow 0.3s ease;
+  box-shadow: 0 0 20px 5px rgba(255, 68, 68, 0.8);
+  transition: box-shadow 0.3s ease;
 }
