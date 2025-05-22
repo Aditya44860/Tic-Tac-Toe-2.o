@@ -22,8 +22,9 @@ const StartPage = () => {
   });
 
   return (
-    <div className="px-4 max-w-screen-xl mx-auto overflow-x-hidden">
-      <div className="background absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+    <div className="px-4 max-w-screen-xl mx-auto overflow-x-hidden ">
+
+      <div className="background absolute inset-0 w-full h-full pointer-events-none overflow-hidden -z-10">
   <motion.img
     src="/images/spiderman.png"
     alt="spiderman"
