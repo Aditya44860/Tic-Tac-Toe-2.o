@@ -38,9 +38,14 @@
 
 @keyframes glowPulse {
   from {
-    text-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   }
   to {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.9);
   }
+}
+
+.red-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(255, 68, 68, 0.574);
+  transition: text-shadow 0.3s ease;
 }
