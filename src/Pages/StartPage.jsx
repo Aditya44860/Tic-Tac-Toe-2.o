@@ -25,7 +25,7 @@ const StartPage = () => {
     <div className="px-4 max-w-screen-xl mx-auto overflow-x-hidden">
       <div className="background absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
   <motion.img
-    src="src/images/spiderman.png"
+    src="/images/spiderman.png"
     alt="spiderman"
     variants={jumping(0)}
     initial="initial"
@@ -34,7 +34,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="./images/superman.png"
+    src="/images/superman.png"
     alt="superman"
     variants={jumping(0.2)}
     initial="initial"
@@ -43,7 +43,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/Flash.png"
+    src="/images/flash.png"
     alt="flash"
     variants={jumping(0.4)}
     initial="initial"
@@ -52,7 +52,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/batman.png"
+    src="/images/batman.png"
     alt="batman"
     variants={jumping(0.6)}
     initial="initial"
@@ -61,7 +61,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/WonderWoman.png"
+    src="/images/wonderwoman.png"
     alt="wonderwoman"
     variants={jumping(0.8)}
     initial="initial"
@@ -70,7 +70,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/Widow.png"
+    src="/images/widow.png"
     alt="black_widow"
     variants={jumping(0)}
     initial="initial"
@@ -79,7 +79,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/Hulk.png"
+    src="/images/hulk.png"
     alt="hulk"
     variants={jumping(0.2)}
     initial="initial"
@@ -88,7 +88,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/ironman.png"
+    src="/images/ironman.png"
     alt="iron_man"
     variants={jumping(0.4)}
     initial="initial"
@@ -97,7 +97,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/Hawkeye.png"
+    src="/images/hawkeye.png"
     alt="hawkeye"
     variants={jumping(0.6)}
     initial="initial"
@@ -106,7 +106,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/Thor.png"
+    src="/images/thor.png"
     alt="thor"
     variants={jumping(0.8)}
     initial="initial"
@@ -115,7 +115,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/greenL.png"
+    src="/images/greenL.png"
     alt="green_lantern"
      variants={jumping(0)}
     initial="initial"
@@ -124,7 +124,7 @@ const StartPage = () => {
   />
 
   <motion.img
-    src="src/images/aquaman.png"
+    src="/images/aquaman.png"
     alt="aquaman"
      variants={jumping(0.2)}
     initial="initial"
