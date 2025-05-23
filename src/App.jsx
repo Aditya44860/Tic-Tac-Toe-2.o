@@ -4,6 +4,7 @@ import Selection from './Pages/Selection'
 import Startpage from './Pages/StartPage'
 import Winning from './Pages/Winning'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { GameProvider } from './context/GameContext';
 
 const App = () => {
 
@@ -15,9 +16,9 @@ const App = () => {
   ])
 
   return (
-    <div>
+    <GameProvider>
       <RouterProvider router={router}/>
-    </div>
+    </GameProvider>
   );
 };
 
