@@ -43,7 +43,7 @@ const Selection = () => {
 
   return (
     <div className="min-h-screen w-screen flex flex-col p-2 overflow-y-auto sm:overflow-hidden">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl text-red-600 text-center font-aldrich mt-1 mb-2 text-glow-yellow">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl text-red-600 text-center font-aldrich mt-4 mb-2 text-glow-yellow">
         Select Your Characters
       </h1>
       
@@ -53,7 +53,7 @@ const Selection = () => {
       </p>
 
       {/* Main character grid - 6 columns x 4 rows */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 gap-1 max-w-[900px] mx-auto px-4 mt-[4%] overflow-y-auto">
+      <div className="grid grid-cols-4 sm:grid-cols-6 gap-1 max-w-[900px] mx-auto px-4 mt-[2%] overflow-y-auto">
         {characters.map((char) => {
           const isSelected = [...player1Characters, ...player2Characters].includes(char.id);
           return (
@@ -65,10 +65,10 @@ const Selection = () => {
               onClick={() => {
                 if (isSelected) return;
                 
-                if (currentTurn === 1 && player1Characters.length < 3) {
+                if (currentTurn === 1 && player1Characters.length < 4) {
                   setPlayer1Characters([...player1Characters, char.id]);
                   setCurrentTurn(2);
-                } else if (currentTurn === 2 && player2Characters.length < 3) {
+                } else if (currentTurn === 2 && player2Characters.length < 4) {
                   setPlayer2Characters([...player2Characters, char.id]);
                   setCurrentTurn(1);
                 }
@@ -88,12 +88,12 @@ const Selection = () => {
       </div>
       
       {/* Player selection area */}
-      <div className="flex flex-col sm:flex-row justify-between  max-w-[900px] mx-auto px-4 w-full sm:mt-[4%] mt-30">
+      <div className="flex flex-col sm:flex-row justify-between max-w-[900px] mx-auto px-4 w-full sm:mt-[3%] mt-30">
         {/* Player 1 side */}
         <div className="w-full sm:w-[30%] mb-4 sm:mb-0">
           <div className="flex flex-col">
-            <div className="grid grid-cols-3 gap-1">
-              {[0, 1, 2].map((index) => (
+            <div className="grid grid-cols-4 gap-1">
+              {[0, 1, 2, 3].map((index) => (
                 <div key={`p1-${index}`} className="border border-blue-500 bg-black bg-opacity-50 aspect-square">
                   {player1Characters[index] && (
                     <img 
@@ -111,24 +111,30 @@ const Selection = () => {
           </div>
         </div>
         
-        {/* Center - VS and Start button */}
+        {/* Center - VS and buttons */}
         <div className="flex flex-col items-center justify-end pb-2 mb-4 sm:mb-0">
-          <p className="text-red-500 text-xl sm:text-2xl md:text-3xl font-bold mb-1">VS</p>
-          <NavLink to="/playing">
-            <button 
-              className="bg-red-600 text-white px-3 py-1 text-sm sm:text-base md:text-xl rounded-md font-aldrich hover:bg-red-700 disabled:opacity-50 mt-5 tracking-wider"
-              disabled={player1Characters.length < 3 || player2Characters.length < 3}
-            >
-              START
-            </button>
-          </NavLink>
+          <p className="text-yellow-500 text-xl sm:text-2xl md:text-3xl font-bold mb-5 font-aldrich">VS</p>
+          <div className="flex flex-col gap-2">
+            
+            
+            <NavLink to="/playing">
+      
+              <button 
+                className="bg-red-600 text-white px-3 mt-[5%] py-1 text-sm sm:text-base md:text-xl rounded-md font-aldrich hover:bg-red-700 disabled:opacity-50 tracking-wider"
+                disabled={player1Characters.length < 4 || player2Characters.length < 4}
+              >
+                START
+              </button>
+
+            </NavLink>
+          </div>
         </div>
         
         {/* Player 2 side */}
         <div className="w-full sm:w-[30%]">
           <div className="flex flex-col">
-            <div className="grid grid-cols-3 gap-1">
-              {[0, 1, 2].map((index) => (
+            <div className="grid grid-cols-4 gap-1">
+              {[0, 1, 2, 3].map((index) => (
                 <div key={`p2-${index}`} className="border border-red-500 bg-black bg-opacity-50 aspect-square">
                   {player2Characters[index] && (
                     <img 

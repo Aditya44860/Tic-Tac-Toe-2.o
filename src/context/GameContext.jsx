@@ -3,8 +3,8 @@ import React, { createContext, useState, useContext } from 'react';
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  const [player1, setPlayer1] = useState("Player1");
-  const [player2, setPlayer2] = useState("Player2");
+  const [player1, setPlayer1] = useState("Player 1");
+  const [player2, setPlayer2] = useState("Player 2");
   const [player1Characters, setPlayer1Characters] = useState([]);
   const [player2Characters, setPlayer2Characters] = useState([]);
 

@@ -187,9 +187,12 @@ const StartPage = () => {
             <button
               className="bg-[#D9D9D9] font-aldrich text-3xl sm:text-4xl px-8 py-3 rounded-full hover:bg-[#FF004D] hover:scale-110 red-glow-hover cursor-pointer transition-all duration-300 border-2 border-red-600 hover:border-yellow-300"
               onClick={(e) => {
-                console.log(
-                  `player one is ${player1} and player two is ${player2}`
-                );
+                if(player1===""){
+                  setPlayer1("Player 1")
+                }
+                if(player2===""){
+                  setPlayer2("Player 2")
+                }
               }}
             >
               Start

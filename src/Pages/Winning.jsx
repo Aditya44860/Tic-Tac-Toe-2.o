@@ -1,9 +1,34 @@
-import React from 'react'
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Winning = () => {
-  return (
-    <div>Winning</div>
-  )
-}
+  const location = useLocation();
+  const navigate = useNavigate();
+  const winner = location.state?.winner;
 
-export default Winning
+  return (
+    <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-90">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl text-red-600 font-aldrich mb-8 text-glow-yellow text-center">
+        Congratulations {winner}!
+      </h1>
+      <button
+        onClick={() => navigate("/playing")}
+        className="bg-red-600 text-white px-6 py-2 text-xl rounded-md font-aldrich hover:bg-red-700 mt-28"
+      >
+        Play Again
+      </button>
+
+      <button
+        className="bg-yellow-600 text-white px-6 py-2 text-xl rounded-md font-aldrich hover:bg-yellow-700 mt-4"
+        onClick={() => {
+          navigate("/selection"), 
+          window.location.reload();
+        }}
+      >
+        Reselect
+      </button>
+    </div>
+  );
+};
+
+export default Winning;
