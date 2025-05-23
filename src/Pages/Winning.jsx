@@ -21,11 +21,13 @@ const Winning = () => {
       <button
         className="bg-yellow-600 text-white px-6 py-2 text-xl rounded-md font-aldrich hover:bg-yellow-700 mt-4"
         onClick={() => {
-          navigate("/selection"), 
-          window.location.reload();
+          setPlayer1Characters([]),
+          setPlayer2Characters([]),
+          setCurrentTurn(1),
+          navigate("/");
         }}
       >
-        Reselect
+        RESELECT
       </button>
     </div>
   );
