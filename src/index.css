@@ -79,6 +79,11 @@
   }
 }
 
+/* Selected character glow */
+.selected-character-glow {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
 /* Character selection grid styles */
 .character-box {
   transition: all 0.2s ease;

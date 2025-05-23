@@ -3,9 +3,14 @@ import { useGameContext } from "../context/GameContext";
 import { NavLink } from "react-router-dom";
 
 const Selection = () => {
-  const { player1, player2 } = useGameContext();
-  const [player1Selections, setPlayer1Selections] = useState([]);
-  const [player2Selections, setPlayer2Selections] = useState([]);
+  const { 
+    player1, 
+    player2, 
+    player1Characters, 
+    setPlayer1Characters,
+    player2Characters, 
+    setPlayer2Characters 
+  } = useGameContext();
   const [currentTurn, setCurrentTurn] = useState(1); // 1 for player1, 2 for player2
   
   // Create an array of characters using available images
@@ -48,9 +53,9 @@ const Selection = () => {
       </p>
 
       {/* Main character grid - 6 columns x 4 rows */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 gap-1 max-w-[900px] mx-auto px-4 mt-2 overflow-y-auto">
+      <div className="grid grid-cols-4 sm:grid-cols-6 gap-1 max-w-[900px] mx-auto px-4 mt-[4%] overflow-y-auto">
         {characters.map((char) => {
-          const isSelected = [...player1Selections, ...player2Selections].includes(char.id);
+          const isSelected = [...player1Characters, ...player2Characters].includes(char.id);
           return (
             <div 
               key={char.id} 
@@ -60,11 +65,11 @@ const Selection = () => {
               onClick={() => {
                 if (isSelected) return;
                 
-                if (currentTurn === 1 && player1Selections.length < 3) {
-                  setPlayer1Selections([...player1Selections, char.id]);
+                if (currentTurn === 1 && player1Characters.length < 3) {
+                  setPlayer1Characters([...player1Characters, char.id]);
                   setCurrentTurn(2);
-                } else if (currentTurn === 2 && player2Selections.length < 3) {
-                  setPlayer2Selections([...player2Selections, char.id]);
+                } else if (currentTurn === 2 && player2Characters.length < 3) {
+                  setPlayer2Characters([...player2Characters, char.id]);
                   setCurrentTurn(1);
                 }
               }}
@@ -74,7 +79,7 @@ const Selection = () => {
                 alt={char.name}
                 className={`w-full h-full object-contain p-1 ${!isSelected ? 'character-glow' : ''}`}
               />
-              <span className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-[8px] sm:text-xs text-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="absolute bottom-0 left-0 right-0 bg-opacity-0 text-white text-[8px] sm:text-xs text-center opacity-0 group-hover:opacity-100 transition-opacity">
                 {char.name}
               </span>
             </div>
@@ -83,18 +88,18 @@ const Selection = () => {
       </div>
       
       {/* Player selection area */}
-      <div className="flex flex-col sm:flex-row justify-between mt-4 max-w-[900px] mx-auto px-4 w-full mt-[4%]">
+      <div className="flex flex-col sm:flex-row justify-between  max-w-[900px] mx-auto px-4 w-full sm:mt-[4%] mt-30">
         {/* Player 1 side */}
         <div className="w-full sm:w-[30%] mb-4 sm:mb-0">
           <div className="flex flex-col">
             <div className="grid grid-cols-3 gap-1">
               {[0, 1, 2].map((index) => (
                 <div key={`p1-${index}`} className="border border-blue-500 bg-black bg-opacity-50 aspect-square">
-                  {player1Selections[index] && (
+                  {player1Characters[index] && (
                     <img 
-                      src={characters.find(c => c.id === player1Selections[index])?.image} 
+                      src={characters.find(c => c.id === player1Characters[index])?.image} 
                       alt="Selected character"
-                      className="w-full h-full object-contain p-1"
+                      className="w-full h-full object-contain p-1 selected-character-glow"
                     />
                   )}
                 </div>
@@ -111,8 +116,8 @@ const Selection = () => {
           <p className="text-red-500 text-xl sm:text-2xl md:text-3xl font-bold mb-1">VS</p>
           <NavLink to="/playing">
             <button 
-              className="bg-red-600 text-white px-3 py-1 text-xs sm:text-sm md:text-base rounded-md font-aldrich hover:bg-red-700 disabled:opacity-50"
-              disabled={player1Selections.length < 3 || player2Selections.length < 3}
+              className="bg-red-600 text-white px-3 py-1 text-sm sm:text-base md:text-xl rounded-md font-aldrich hover:bg-red-700 disabled:opacity-50 mt-5 tracking-wider"
+              disabled={player1Characters.length < 3 || player2Characters.length < 3}
             >
               START
             </button>
@@ -125,11 +130,11 @@ const Selection = () => {
             <div className="grid grid-cols-3 gap-1">
               {[0, 1, 2].map((index) => (
                 <div key={`p2-${index}`} className="border border-red-500 bg-black bg-opacity-50 aspect-square">
-                  {player2Selections[index] && (
+                  {player2Characters[index] && (
                     <img 
-                      src={characters.find(c => c.id === player2Selections[index])?.image} 
+                      src={characters.find(c => c.id === player2Characters[index])?.image} 
                       alt="Selected character"
-                      className="w-full h-full object-contain p-1"
+                      className="w-full h-full object-contain p-1 selected-character-glow"
                     />
                   )}
                 </div>
