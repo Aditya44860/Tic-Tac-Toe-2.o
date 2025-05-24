@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import { motion } from "framer-motion";
@@ -6,6 +6,8 @@ import { useGameContext } from "../context/GameContext";
 
 const StartPage = () => {
   const { player1, setPlayer1, player2, setPlayer2 } = useGameContext();
+  const typeSound = useRef(new Audio("/sounds/type.mp3"));
+  const clickedSound = useRef(new Audio("/sounds/clicked.mp3"));
 
   const jumping = (delay = 0) => ({
     initial: { y: 0 },
@@ -157,7 +159,11 @@ const StartPage = () => {
                 type="text"
                 maxLength={15}
                 value={player1}
-                onChange={(e) => setPlayer1(e.target.value)}
+                onChange={(e) => {
+                  typeSound.current.currentTime = 0;
+                  typeSound.current.play();
+                  setPlayer1(e.target.value);
+                }}
                 className="bg-[#fffffff3] flex-1 h-10 sm:h-12 px-4 text-[#0000006b] rounded-md"
                 placeholder="Enter your name"
               />
@@ -174,7 +180,11 @@ const StartPage = () => {
                 type="text"
                 maxLength={15}
                 value={player2}
-                onChange={(e) => setPlayer2(e.target.value)}
+                onChange={(e) => {
+                  typeSound.current.currentTime = 0;
+                  typeSound.current.play();
+                  setPlayer2(e.target.value);
+                }}
                 className="bg-[#fffffff3] w-full h-10 sm:h-12 px-4 pr-10 text-[#0000006b] rounded-md"
                 placeholder="Enter your name"
               />
@@ -187,6 +197,7 @@ const StartPage = () => {
             <button
               className="bg-[#D9D9D9] font-aldrich text-3xl sm:text-4xl px-8 py-3 rounded-full hover:bg-[#FF004D] hover:scale-110 red-glow-hover cursor-pointer transition-all duration-300 border-2 border-red-600 hover:border-yellow-300"
               onClick={(e) => {
+                clickedSound.current.play();
                 if(player1===""){
                   setPlayer1("Player 1")
                 }

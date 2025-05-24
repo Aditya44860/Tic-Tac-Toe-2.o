@@ -6,6 +6,7 @@ const Selection = () => {
   const [showHelp, setShowHelp] = useState(false);
   const hoverSound = useRef(new Audio("/sounds/click.mp3"));
   const selectSound = useRef(new Audio("/sounds/select.mp3"));
+  const clickedSound = useRef(new Audio("/sounds/clicked.mp3"));
   const { 
     player1, 
     player2, 
@@ -134,6 +135,11 @@ const Selection = () => {
               <button 
                 className="bg-red-600 text-white px-3 mt-[5%] py-1 text-sm sm:text-base md:text-xl rounded-md font-aldrich hover:bg-red-700 disabled:opacity-50 tracking-wider"
                 disabled={player1Characters.length < 4 || player2Characters.length < 4}
+                onClick={() => {
+                  if (player1Characters.length >= 4 && player2Characters.length >= 4) {
+                    clickedSound.current.play();
+                  }
+                }}
               >
                 START
               </button>
