@@ -105,86 +105,149 @@ const Game = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen flex flex-col p-4">
-      <div className="flex justify-between items-start max-w-[1200px] mx-auto w-full">
-
-        {/* Player 1 side */}
-        <div className="w-[200px]">
+    <div className="min-h-screen w-screen flex flex-col p-2 sm:p-4 overflow-x-hidden">
+      {/* Turn indicator for mobile */}
+      <div className="md:hidden text-center mb-4">
+        <p className="text-white font-aldrich text-lg">
+          {currentTurn === 1 ? `${player1}'s turn` : `${player2}'s turn`}
+        </p>
+      </div>
+      
+      <div className="flex flex-col max-w-[1200px] mx-auto w-full">
+        {/* Player 1 side - horizontal on mobile, vertical on desktop */}
+        <div className="w-full mb-4 md:hidden">
           <div className={`bg-blue-900 border border-blue-500 p-2 mb-2 ${currentTurn === 1 ? 'ring-2 ring-white' : ''}`}>
             <p className="text-white font-aldrich text-center">{player1}</p>
           </div>
-          <div className="grid gap-2">
+          <div className="flex flex-nowrap overflow-x-auto gap-2">
             {player1Hand.map((charId) => {
               const character = characters.find(c => c.id === charId);
               return (
                 <div 
                   key={charId} 
                   onClick={() => currentTurn === 1 && handleCharacterSelect(charId)}
-                  className={`border border-blue-500 bg-black bg-opacity-50 p-1 cursor-pointer
+                  className={`border border-blue-500 bg-black bg-opacity-50 p-1 cursor-pointer flex-shrink-0 w-[calc(33.33%-0.5rem)]
                     ${currentTurn === 1 ? 'hover:border-white' : 'opacity-50'}
                     ${selectedCharacter === charId ? 'ring-2 ring-white' : ''}`}
                 >
                   <img
                     src={character?.image}
                     alt={character?.name}
-                    className="w-full h-[100px] object-contain selected-character-glow"
+                    className="w-full h-[60px] object-contain selected-character-glow"
                   />
-                  <p className="text-white text-center text-sm mt-1 font-aldrich">{character?.name}</p>
+                  <p className="text-white text-center text-xs mt-1 font-aldrich truncate">{character?.name}</p>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Game board */}
-        <div className="flex-1 mx-8">
-          <div className="grid grid-cols-3 gap-2 max-w-[500px] mx-auto">
-            {board.map((cell, index) => (
-              <div
-                key={index}
-                onClick={() => handleCellClick(index)}
-                className="border-2 border-yellow-500 aspect-square bg-black bg-opacity-50 p-2 cursor-pointer hover:bg-opacity-70"
-              >
-                {cell && (
-                  <img
-                    src={characters.find(c => c.id === cell.charId)?.image}
-                    alt="character"
-                    className="w-full h-full object-contain selected-character-glow"
-                  />
-                )}
-              </div>
-            ))}
+        <div className="md:flex md:flex-row md:justify-between md:items-start">
+          {/* Player 1 side - desktop only */}
+          <div className="hidden md:block md:w-[180px] lg:w-[200px]">
+            <div className={`bg-blue-900 border border-blue-500 p-2 mb-2 ${currentTurn === 1 ? 'ring-2 ring-white' : ''}`}>
+              <p className="text-white font-aldrich text-center">{player1}</p>
+            </div>
+            <div className="grid grid-cols-1 gap-2">
+              {player1Hand.map((charId) => {
+                const character = characters.find(c => c.id === charId);
+                return (
+                  <div 
+                    key={charId} 
+                    onClick={() => currentTurn === 1 && handleCharacterSelect(charId)}
+                    className={`border border-blue-500 bg-black bg-opacity-50 p-1 cursor-pointer
+                      ${currentTurn === 1 ? 'hover:border-white' : 'opacity-50'}
+                      ${selectedCharacter === charId ? 'ring-2 ring-white' : ''}`}
+                  >
+                    <img
+                      src={character?.image}
+                      alt={character?.name}
+                      className="w-full h-[80px] md:h-[100px] object-contain selected-character-glow"
+                    />
+                    <p className="text-white text-center text-sm mt-1 font-aldrich truncate">{character?.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Game board */}
+          <div className="w-full md:flex-1 md:mx-4 lg:mx-8 mb-4 md:mb-0">
+            <div className="grid grid-cols-3 gap-2 max-w-[500px] mx-auto">
+              {board.map((cell, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleCellClick(index)}
+                  className="border-2 border-yellow-500 aspect-square bg-black bg-opacity-50 p-2 cursor-pointer hover:bg-opacity-70"
+                >
+                  {cell && (
+                    <img
+                      src={characters.find(c => c.id === cell.charId)?.image}
+                      alt="character"
+                      className="w-full h-full object-contain selected-character-glow"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Player 2 side - desktop only */}
+          <div className="hidden md:block md:w-[180px] lg:w-[200px]">
+            <div className={`bg-red-900 border border-red-500 p-2 mb-2 ${currentTurn === 2 ? 'ring-2 ring-white' : ''}`}>
+              <p className="text-white font-aldrich text-center">{player2}</p>
+            </div>
+            <div className="grid grid-cols-1 gap-2">
+              {player2Hand.map((charId) => {
+                const character = characters.find(c => c.id === charId);
+                return (
+                  <div 
+                    key={charId} 
+                    onClick={() => currentTurn === 2 && handleCharacterSelect(charId)}
+                    className={`border border-red-500 bg-black bg-opacity-50 p-1 cursor-pointer
+                      ${currentTurn === 2 ? 'hover:border-white' : 'opacity-50'}
+                      ${selectedCharacter === charId ? 'ring-2 ring-white' : ''}`}
+                  >
+                    <img
+                      src={character?.image}
+                      alt={character?.name}
+                      className="w-full h-[80px] md:h-[100px] object-contain selected-character-glow"
+                    />
+                    <p className="text-white text-center text-sm mt-1 font-aldrich truncate">{character?.name}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Player 2 side */}
-        <div className="w-[200px]">
+        {/* Player 2 side - horizontal on mobile, vertical on desktop */}
+        <div className="w-full mt-4 md:hidden">
           <div className={`bg-red-900 border border-red-500 p-2 mb-2 ${currentTurn === 2 ? 'ring-2 ring-white' : ''}`}>
             <p className="text-white font-aldrich text-center">{player2}</p>
           </div>
-          <div className="grid gap-2">
+          <div className="flex flex-nowrap overflow-x-auto gap-2">
             {player2Hand.map((charId) => {
               const character = characters.find(c => c.id === charId);
               return (
                 <div 
                   key={charId} 
                   onClick={() => currentTurn === 2 && handleCharacterSelect(charId)}
-                  className={`border border-red-500 bg-black bg-opacity-50 p-1 cursor-pointer
+                  className={`border border-red-500 bg-black bg-opacity-50 p-1 cursor-pointer flex-shrink-0 w-[calc(33.33%-0.5rem)]
                     ${currentTurn === 2 ? 'hover:border-white' : 'opacity-50'}
                     ${selectedCharacter === charId ? 'ring-2 ring-white' : ''}`}
                 >
                   <img
                     src={character?.image}
                     alt={character?.name}
-                    className="w-full h-[100px] object-contain selected-character-glow"
+                    className="w-full h-[60px] object-contain selected-character-glow"
                   />
-                  <p className="text-white text-center text-sm mt-1 font-aldrich">{character?.name}</p>
+                  <p className="text-white text-center text-xs mt-1 font-aldrich truncate">{character?.name}</p>
                 </div>
               );
             })}
           </div>
         </div>
-
       </div>
     </div>
   );

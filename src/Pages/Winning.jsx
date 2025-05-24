@@ -10,14 +10,15 @@ const Winning = () => {
 
   return (
     <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-90">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl text-red-600 font-aldrich mb-8 text-glow-yellow text-center">
+      
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-red-600 font-aldrich mb-8 winner-glow text-center">
         Congratulations {winner}!
       </h1>
       <button
         onClick={() => navigate("/playing")}
         className="bg-red-600 text-white px-6 py-2 text-xl rounded-md font-aldrich hover:bg-red-700 mt-28"
       >
-        Play Again
+        PLAY AGAIN
       </button>
 
       <button
