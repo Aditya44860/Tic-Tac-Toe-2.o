@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Neuton&display=swap');
 
-:root{
+:root {
   background-color: #0a0a0af4;
 }
 
@@ -20,14 +20,45 @@
 }
 
 @keyframes flicker {
-  0%   { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
-  5%   { opacity: 0.8; text-shadow: none; }
-  10%  { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 15px #ca1a1a; }
-  20%  { opacity: 0.6; text-shadow: none; }
-  30%  { opacity: 1; text-shadow: 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
-  70%  { opacity: 0.9; text-shadow: 0 0 5px #ca1a1a; }
-  90%  { opacity: 0.7; text-shadow: none; }
-  100% { opacity: 1; text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a; }
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a;
+  }
+
+  5% {
+    opacity: 0.8;
+    text-shadow: none;
+  }
+
+  10% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ca1a1a, 0 0 15px #ca1a1a;
+  }
+
+  20% {
+    opacity: 0.6;
+    text-shadow: none;
+  }
+
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ca1a1a, 0 0 20px #ca1a1a;
+  }
+
+  70% {
+    opacity: 0.9;
+    text-shadow: 0 0 5px #ca1a1a;
+  }
+
+  90% {
+    opacity: 0.7;
+    text-shadow: none;
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ca1a1a, 0 0 10px #ca1a1a, 0 0 20px #ca1a1a;
+  }
 }
 
 /* Soft glow */
@@ -40,6 +71,7 @@
   from {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   }
+
   to {
     text-shadow: 0 0 7px rgba(255, 255, 255, 0.9);
   }
@@ -59,6 +91,7 @@
   from {
     filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
   }
+
   to {
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
   }
@@ -74,6 +107,7 @@
   from {
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.4);
   }
+
   to {
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 0 0 25px rgba(255, 0, 0, 0.4);
   }
@@ -82,6 +116,15 @@
 /* Selected character glow */
 .selected-character-glow {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* Team-specific character glows */
+.blue-team-glow {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+}
+
+.red-team-glow {
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
 }
 
 /* Character selection grid styles */
@@ -105,11 +148,20 @@
   box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.7);
   transition: all 0.3s ease;
 }
+
 /* Trophy animation */
 @keyframes trophy-glow {
-  0% { text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold; }
-  50% { text-shadow: 0 0 20px gold, 0 0 30px gold, 0 0 40px gold; }
-  100% { text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold; }
+  0% {
+    text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+  }
+
+  50% {
+    text-shadow: 0 0 20px gold, 0 0 30px gold, 0 0 40px gold;
+  }
+
+  100% {
+    text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+  }
 }
 
 .trophy-icon {
@@ -129,6 +181,7 @@
   z-index: 0;
   pointer-events: none;
 }
+
 /* Sound control button */
 .sound-control button {
   transition: all 0.3s ease;

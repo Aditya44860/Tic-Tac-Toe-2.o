@@ -25,118 +25,115 @@ const StartPage = () => {
 
   return (
     <div className="px-4 max-w-screen-xl mx-auto overflow-x-hidden ">
-
       <div className="background absolute inset-0 w-full h-full pointer-events-none overflow-hidden -z-10 max-[600px]:scale-[0.8] max-[600px]:top-10">
-  <motion.img
-    src="/images/spiderman.png"
-    alt="spiderman"
-    variants={jumping(0)}
-    initial="initial"
-    animate="animate"
-    className="absolute top-[-5%] right-0 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/spiderman.png"
+          alt="spiderman"
+          variants={jumping(0)}
+          initial="initial"
+          animate="animate"
+          className="absolute top-[-5%] right-0 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/superman.png"
-    alt="superman"
-    variants={jumping(0.2)}
-    initial="initial"
-    animate="animate"
-    className="absolute top-[18%] left-[6%] -translate-x-1/2 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/superman.png"
+          alt="superman"
+          variants={jumping(0.2)}
+          initial="initial"
+          animate="animate"
+          className="absolute top-[18%] left-[6%] -translate-x-1/2 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/flash.png"
-    alt="flash"
-    variants={jumping(0.4)}
-    initial="initial"
-    animate="animate"
-    className="absolute top-[32%] left-[16%] h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
-  />
+        <motion.img
+          src="/images/flash.png"
+          alt="flash"
+          variants={jumping(0.4)}
+          initial="initial"
+          animate="animate"
+          className="absolute top-[32%] left-[16%] h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
+        />
 
-  <motion.img
-    src="/images/batman.png"
-    alt="batman"
-    variants={jumping(0.6)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[0%] left-[3%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/batman.png"
+          alt="batman"
+          variants={jumping(0.6)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[0%] left-[3%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/wonderwoman.png"
-    alt="wonderwoman"
-    variants={jumping(0.8)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[18%] sm:bottom-[13%] left-[7%] -translate-y-1/2 h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
-  />
+        <motion.img
+          src="/images/wonderwoman.png"
+          alt="wonderwoman"
+          variants={jumping(0.8)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[18%] sm:bottom-[13%] left-[7%] -translate-y-1/2 h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
+        />
 
-  <motion.img
-    src="/images/widow.png"
-    alt="black_widow"
-    variants={jumping(0)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[8%] right-[5%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/widow.png"
+          alt="black_widow"
+          variants={jumping(0)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[8%] right-[5%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/hulk.png"
-    alt="hulk"
-    variants={jumping(0.2)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[0%] right-[25%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/hulk.png"
+          alt="hulk"
+          variants={jumping(0.2)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[0%] right-[25%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/ironman.png"
-    alt="iron_man"
-    variants={jumping(0.4)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[40%] right-[-5%] -translate-x-1/2 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/ironman.png"
+          alt="iron_man"
+          variants={jumping(0.4)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[40%] right-[-5%] -translate-x-1/2 h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/hawkeye.png"
-    alt="hawkeye"
-    variants={jumping(0.6)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[29%] right-[18%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/hawkeye.png"
+          alt="hawkeye"
+          variants={jumping(0.6)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[29%] right-[18%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/thor.png"
-    alt="thor"
-    variants={jumping(0.8)}
-    initial="initial"
-    animate="animate"
-    className="absolute top-[18%] right-[13%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
-  />
+        <motion.img
+          src="/images/thor.png"
+          alt="thor"
+          variants={jumping(0.8)}
+          initial="initial"
+          animate="animate"
+          className="absolute top-[18%] right-[13%] h-20 sm:h-28 md:h-40 lg:h-52 opacity-30"
+        />
 
-  <motion.img
-    src="/images/greenL.png"
-    alt="green_lantern"
-    variants={jumping(0)}
-    initial="initial"
-    animate="animate"
-    className="absolute top-[-2%] left-[10%] h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
-  />
+        <motion.img
+          src="/images/greenL.png"
+          alt="green_lantern"
+          variants={jumping(0)}
+          initial="initial"
+          animate="animate"
+          className="absolute top-[-2%] left-[10%] h-20 sm:h-28 md:h-40 lg:h-52 scale-x-[-1] opacity-30"
+        />
 
-  <motion.img
-    src="/images/aquaman.png"
-    alt="aquaman"
-    variants={jumping(0.2)}
-    initial="initial"
-    animate="animate"
-    className="absolute bottom-[9%] left-[20%] h-20 sm:h-28 md:h-40 lg:h-52 mix-blend-screen opacity-30"
-  />
-</div>
-
-
+        <motion.img
+          src="/images/aquaman.png"
+          alt="aquaman"
+          variants={jumping(0.2)}
+          initial="initial"
+          animate="animate"
+          className="absolute bottom-[9%] left-[20%] h-20 sm:h-28 md:h-40 lg:h-52 mix-blend-screen opacity-30"
+        />
+      </div>
 
       <h1 className="text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#E6E6FA] font-neuton mt-16 text-glow tracking-[0.1em]">
         Tic Tac Toe{" "}
@@ -198,11 +195,11 @@ const StartPage = () => {
               className="bg-[#D9D9D9] font-aldrich text-3xl sm:text-4xl px-8 py-3 rounded-full hover:bg-[#FF004D] hover:scale-110 red-glow-hover cursor-pointer transition-all duration-300 border-2 border-red-600 hover:border-yellow-300"
               onClick={(e) => {
                 clickedSound.current.play();
-                if(player1===""){
-                  setPlayer1("Player 1")
+                if (player1 === "") {
+                  setPlayer1("Player 1");
                 }
-                if(player2===""){
-                  setPlayer2("Player 2")
+                if (player2 === "") {
+                  setPlayer2("Player 2");
                 }
               }}
             >
