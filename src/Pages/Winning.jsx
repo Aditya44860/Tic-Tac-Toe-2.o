@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGameContext } from '../context/GameContext';
 
@@ -7,6 +7,12 @@ const Winning = () => {
   const navigate = useNavigate();
   const winner = location.state?.winner;
   const { setPlayer1Characters, setPlayer2Characters } = useGameContext();
+  const winnerSound = useRef(new Audio("/sounds/winner.mp3"));
+  
+  useEffect(() => {
+    // Play winner sound when component mounts
+    winnerSound.current.play();
+  }, []);
 
   return (
     <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-90">

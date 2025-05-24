@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useGameContext } from "../context/GameContext";
 import { NavLink } from "react-router-dom";
 
 const Selection = () => {
+  const [showHelp, setShowHelp] = useState(false);
+  const hoverSound = useRef(new Audio("/sounds/click.mp3"));
+  const selectSound = useRef(new Audio("/sounds/select.mp3"));
   const { 
     player1, 
     player2, 
@@ -62,8 +65,17 @@ const Selection = () => {
               className={`character-box border border-yellow-500 bg-black bg-opacity-50 flex items-center justify-center aspect-square w-full max-w-[120px] relative group ${
                 isSelected ? 'opacity-20 cursor-not-allowed' : 'hover:bg-opacity-70 cursor-pointer'
               }`}
+              onMouseEnter={() => {
+                if (!isSelected) {
+                  hoverSound.current.currentTime = 0;
+                  hoverSound.current.play();
+                }
+              }}
               onClick={() => {
                 if (isSelected) return;
+                
+                selectSound.current.currentTime = 0;
+                selectSound.current.play();
                 
                 if (currentTurn === 1 && player1Characters.length < 4) {
                   setPlayer1Characters([...player1Characters, char.id]);
@@ -127,6 +139,13 @@ const Selection = () => {
               </button>
 
             </NavLink>
+            
+            <button 
+              onClick={() => setShowHelp(true)}
+              className="bg-blue-600 text-white px-3 py-1 text-sm sm:text-base rounded-md font-aldrich hover:bg-blue-700 tracking-wider mt-2"
+            >
+              HELP
+            </button>
           </div>
         </div>
         
@@ -152,6 +171,43 @@ const Selection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Help Modal */}
+      {showHelp && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border-2 border-yellow-500 rounded-lg p-4 max-w-md w-full">
+            <h2 className="text-xl text-yellow-500 font-aldrich mb-4 text-center">How to Select Characters</h2>
+            
+            <ul className="text-white space-y-3 mb-6">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">1.</span>
+                <span>Each player must select 4 characters to play with.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">2.</span>
+                <span>Players take turns selecting characters from the grid.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">3.</span>
+                <span>Selected characters appear in your player box.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">4.</span>
+                <span>Once both players have selected 4 characters, click START to begin the game.</span>
+              </li>
+            </ul>
+            
+            <div className="flex justify-center">
+              <button 
+                onClick={() => setShowHelp(false)}
+                className="bg-red-600 text-white px-4 py-2 rounded-md font-aldrich hover:bg-red-700"
+              >
+                CLOSE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useGameContext } from '../context/GameContext';
 import { useNavigate } from 'react-router-dom';
 
 const Game = () => {
   const navigate = useNavigate();
+  const [showHelp, setShowHelp] = useState(false);
+  const [winningLine, setWinningLine] = useState(null);
+  const winSound = useRef(new Audio("/sounds/win.mp3"));
   const { player1, player2, player1Characters, player2Characters } = useGameContext();
   const [currentTurn, setCurrentTurn] = useState(1);
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -53,11 +56,21 @@ const Game = () => {
       const cPlayer = boardState[c]?.player;
 
       if (aPlayer && aPlayer === bPlayer && bPlayer === cPlayer) {
-        navigate('/finished', {
-          state: {
-            winner: aPlayer === 1 ? player1 : player2,
-          },
-        });
+        // Play win sound
+        winSound.current.play();
+        
+        // Set winning line for highlighting
+        setWinningLine(line);
+        
+        // Navigate after delay
+        setTimeout(() => {
+          navigate('/finished', {
+            state: {
+              winner: aPlayer === 1 ? player1 : player2,
+            },
+          });
+        }, 2000);
+        
         return true;
       }
     }
@@ -106,11 +119,17 @@ const Game = () => {
 
   return (
     <div className="min-h-screen w-screen flex flex-col p-2 sm:p-4 overflow-x-hidden">
-      {/* Turn indicator for mobile */}
+      {/* Turn indicator and help button for mobile */}
       <div className="md:hidden text-center mb-4">
         <p className="text-white font-aldrich text-lg">
           {currentTurn === 1 ? `${player1}'s turn` : `${player2}'s turn`}
         </p>
+        <button 
+          onClick={() => setShowHelp(true)}
+          className="bg-blue-600 text-white px-3 py-1 text-sm  rounded-md font-aldrich hover:bg-blue-700 mt-4"
+        >
+          HELP
+        </button>
       </div>
       
       <div className="flex flex-col max-w-[1200px] mx-auto w-full">
@@ -173,12 +192,21 @@ const Game = () => {
 
           {/* Game board */}
           <div className="w-full md:flex-1 md:mx-4 lg:mx-8 mb-4 md:mb-0">
+            
+              <button 
+                onClick={() => setShowHelp(true)}
+                className="bg-blue-600 text-white px-3 py-1 text-sm rounded-md font-aldrich hover:bg-blue-700 hidden md:block md:mb-10"
+              >
+                HELP
+              </button>
+            
             <div className="grid grid-cols-3 gap-2 max-w-[500px] mx-auto">
               {board.map((cell, index) => (
                 <div
                   key={index}
                   onClick={() => handleCellClick(index)}
-                  className="border-2 border-yellow-500 aspect-square bg-black bg-opacity-50 p-2 cursor-pointer hover:bg-opacity-70"
+                  className={`border-2 border-yellow-500 aspect-square bg-black bg-opacity-50 p-2 cursor-pointer hover:bg-opacity-70 
+                    ${winningLine?.includes(index) ? 'animate-pulse border-4 border-green-500 winning-glow' : ''}`}
                 >
                   {cell && (
                     <img
@@ -249,6 +277,43 @@ const Game = () => {
           </div>
         </div>
       </div>
+      
+      {/* Help Modal */}
+      {showHelp && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border-2 border-yellow-500 rounded-lg p-4 max-w-md w-full">
+            <h2 className="text-xl text-yellow-500 font-aldrich mb-4 text-center">How to Play</h2>
+            
+            <ul className="text-white space-y-3 mb-6">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">1.</span>
+                <span>Select a character from your hand by clicking on it.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">2.</span>
+                <span>Place your selected character on the board by clicking an empty cell.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">3.</span>
+                <span>You can only have 3 characters on the board at once. When you place a 4th character, your oldest character will be returned to your hand.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">4.</span>
+                <span>Get three of your characters in a row (horizontally, vertically, or diagonally) to win!</span>
+              </li>
+            </ul>
+            
+            <div className="flex justify-center">
+              <button 
+                onClick={() => setShowHelp(false)}
+                className="bg-red-600 text-white px-4 py-2 rounded-md font-aldrich hover:bg-red-700"
+              >
+                CLOSE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
