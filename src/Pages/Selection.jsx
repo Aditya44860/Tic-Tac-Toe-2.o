@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useGameContext } from "../context/GameContext";
 import { NavLink } from "react-router-dom";
 
@@ -7,6 +7,12 @@ const Selection = () => {
   const hoverSound = useRef(new Audio("/sounds/click.mp3"));
   const selectSound = useRef(new Audio("/sounds/select.mp3"));
   const clickedSound = useRef(new Audio("/sounds/clicked.mp3"));
+  const helpSound = useRef(new Audio("/sounds/help.mp3"));
+  
+  // Preload sounds to reduce delay
+  useEffect(() => {
+    helpSound.current.load();
+  }, []);
   const { 
     player1, 
     player2, 
@@ -147,7 +153,10 @@ const Selection = () => {
             </NavLink>
             
             <button 
-              onClick={() => setShowHelp(true)}
+              onClick={() => {
+                helpSound.current.play();
+                setShowHelp(true);
+              }}
               className="bg-blue-600 text-white px-3 py-1 text-sm sm:text-base rounded-md font-aldrich hover:bg-blue-700 tracking-wider mt-2"
             >
               HELP

@@ -7,6 +7,14 @@ const Game = () => {
   const [showHelp, setShowHelp] = useState(false);
   const [winningLine, setWinningLine] = useState(null);
   const winSound = useRef(new Audio("/sounds/win.mp3"));
+  const placeSound = useRef(new Audio("/sounds/place.mp3"));
+  const clickSound = useRef(new Audio("/sounds/click.mp3"));
+  const helpSound = useRef(new Audio("/sounds/help.mp3"));
+  
+  // Preload sounds to reduce delay
+  useEffect(() => {
+    helpSound.current.load();
+  }, []);
   const { player1, player2, player1Characters, player2Characters } = useGameContext();
   const [currentTurn, setCurrentTurn] = useState(1);
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -80,6 +88,11 @@ const Game = () => {
   const handleCharacterSelect = (charId) => {
     const currentHand = currentTurn === 1 ? player1Hand : player2Hand;
     if (!currentHand.includes(charId)) return;
+    
+    // Play click sound when selecting a character
+    clickSound.current.currentTime = 0;
+    clickSound.current.play();
+    
     setSelectedCharacter(charId);
   };
 
@@ -96,6 +109,10 @@ const Game = () => {
     const placedObject = { charId: selectedCharacter, player: currentTurn };
     newBoard[index] = placedObject;
     setBoard(newBoard);
+    
+    // Play place sound
+    placeSound.current.currentTime = 0;
+    placeSound.current.play();
 
     const newPlacedCharacters = [...placedCharacters, { ...placedObject, position: index }];
     setPlacedCharacters(newPlacedCharacters);
@@ -125,7 +142,10 @@ const Game = () => {
           {currentTurn === 1 ? `${player1}'s turn` : `${player2}'s turn`}
         </p>
         <button 
-          onClick={() => setShowHelp(true)}
+          onClick={() => {
+            helpSound.current.play();
+            setShowHelp(true);
+          }}
           className="bg-blue-600 text-white px-3 py-1 text-sm  rounded-md font-aldrich hover:bg-blue-700 mt-4"
         >
           HELP
@@ -194,7 +214,10 @@ const Game = () => {
           <div className="w-full md:flex-1 md:mx-4 lg:mx-8 mb-4 md:mb-0">
             
               <button 
-                onClick={() => setShowHelp(true)}
+                onClick={() => {
+                  helpSound.current.play();
+                  setShowHelp(true);
+                }}
                 className="bg-blue-600 text-white px-3 py-1 text-sm rounded-md font-aldrich hover:bg-blue-700 hidden md:block md:mb-10"
               >
                 HELP
